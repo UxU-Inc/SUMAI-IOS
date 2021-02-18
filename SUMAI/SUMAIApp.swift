@@ -11,7 +11,13 @@ import SwiftUI
 struct SUMAIApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            NavigationView{
+                MainView()
+                    .navigationTitle("")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarHidden(true)
+                PolicyView()
+            }
         }
     }
 }
