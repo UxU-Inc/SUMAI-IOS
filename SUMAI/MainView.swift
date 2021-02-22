@@ -15,6 +15,8 @@ struct MainView: View {
     @State private var iskeyboard : Bool = false
     @State private var showmenu : Bool = false
     
+    @ObservedObject private var api = APIComm()
+    
     var body: some View {
         ZStack(alignment: .leading) {
             NavigationView{
@@ -30,7 +32,7 @@ struct MainView: View {
                                         Spacer()
                                     }
                                     Divider()
-                                
+                                    
                                     ResizableTF(txt: $data, height: $height, isEditable: true)
                                         .frame(height: max(iskeyboard ? geometry.size.height-94 : height, 150))
                                         .padding()
@@ -50,10 +52,12 @@ struct MainView: View {
                                     })
                                     .offset(x: -10, y:-max(iskeyboard ? geometry.size.height-94 : height, 150)+10)
                                 }
-
+                                
                                 Button(action: {
                                     print("request")
-                                    self.summary=self.data
+                                    api.requestSummary(data: data) { sum in
+                                        self.summary = sum
+                                    }
                                 }, label: {
                                     Image(systemName: "arrow.forward")
                                         .padding(8.0)
@@ -67,7 +71,6 @@ struct MainView: View {
                                     .frame(height: sum_height)
                                     .padding()
                                     .background(Color.white)
-                                    .id("summary")
                             }
                             Spacer()
                         }
@@ -110,7 +113,7 @@ struct MainView: View {
                             }
                         }
                         ToolbarItem(placement: .navigationBarTrailing){
-                            Button(action: {print("login")}, label: {
+                            Button(action: {print(summary);print(sum_height);print("login")}, label: {
                                 Image(systemName: "person.circle.fill")
                                     .font(.title3)
                                 Text("로그인")
@@ -127,9 +130,10 @@ struct MainView: View {
                 UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
             }
             
+            // MenuView
             HStack{
                 MenuView(showmenu: self.$showmenu)
-                    .offset(x: self.showmenu ? 0 : -UIScreen.main.bounds.width / 1.5)
+                    .offset(x: self.showmenu ? 0 : -UIScreen.main.bounds.width / 1.5 - 10)
                 
                 Spacer(minLength: 0)
             }
@@ -138,6 +142,18 @@ struct MainView: View {
                 withAnimation(.default) {
                     self.showmenu.toggle()
                 }
+            }
+            
+            // Summary Progress popup
+            if api.loading {
+                GeometryReader{ geometry in
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(3)
+                        .frame(width: 10, height: 10, alignment: .center)
+                        .offset(x: (geometry.size.width - 10) / 2, y: (geometry.size.height - 10) / 2)
+                }
+                .background(Color.black.opacity(0.4)).edgesIgnoringSafeArea(.all)
             }
         }
     }

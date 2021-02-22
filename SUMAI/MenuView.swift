@@ -51,7 +51,8 @@ struct MenuView: View {
                 
                 Divider()
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                // \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")
+                Button(action: {EmailHelper.shared.sendEmail(subject: "[SUMAI요약] 의견 보내기", body: "보내 주신 의견은 소중하게 활용되지만, 민감한 정보는 공유하지 말아 주세요.", to: "help@sumai.co.kr")}) {
                     Text("의견 보내기")
                     Spacer()
                 }

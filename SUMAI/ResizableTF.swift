@@ -36,14 +36,15 @@ struct ResizableTF : UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
+        if !isEditable{
+            uiView.text = self.txt
+        } else if self.txt == ""{
+            uiView.endEditing(true)
+            uiView.text = "요약할 내용을 입력하세요."
+            uiView.textColor = .gray
+        }
+        
         DispatchQueue.main.async {
-            if !isEditable{
-                uiView.text = self.txt
-            } else if self.txt == ""{
-                uiView.endEditing(true)
-                uiView.text = "요약할 내용을 입력하세요."
-                uiView.textColor = .gray
-            }
             self.height = uiView.contentSize.height
         }
     }

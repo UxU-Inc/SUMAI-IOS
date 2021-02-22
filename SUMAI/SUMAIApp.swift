@@ -13,11 +13,10 @@ struct SUMAIApp: App {
         WindowGroup {
             NavigationView{
                 MainView()
-                    .navigationTitle("")
-                    .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
                 PolicyView()
             }
+            .preferredColorScheme(.light) // darkmode ignore
         }
     }
 }
