@@ -34,6 +34,7 @@ struct PolicyView: View {
             HStack(spacing: 0){
                 Text("이용약관")
                     .foregroundColor(self.index == 0 ? .white : Color.black.opacity(0.7))
+                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 25)
@@ -47,6 +48,7 @@ struct PolicyView: View {
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 Text("개인정보처리방침")
                     .foregroundColor(self.index == 1 ? .white : Color.black.opacity(0.7))
+                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 10)
@@ -60,6 +62,7 @@ struct PolicyView: View {
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 Text("공지사항")
                     .foregroundColor(self.index == 2 ? .white : Color.black.opacity(0.7))
+                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 25)

@@ -18,7 +18,7 @@ struct MenuView: View {
                     .scaledToFit()
                     .frame(width: 90, height: 33)
                 Text("요약")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(UIScreen.main.bounds.width > 350 ? .title : .title2)
                 Spacer()
             }
             .padding()
