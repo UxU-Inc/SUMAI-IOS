@@ -21,13 +21,14 @@ struct ResizableTF : UIViewRepresentable {
         let view = UITextView()
         if self.isEditable{
             view.text = "요약할 내용을 입력하세요."
+            view.font = UIFont(name: "NotoSansKR-Regular", size: 22)
             view.textColor = .gray
         } else{
             view.text = txt
+            view.font = UIFont(name: "NotoSansKR-Medium", size: 22)
             view.textColor = .black
         }
         view.isEditable = self.isEditable
-        view.font = .systemFont(ofSize: 18)
         view.backgroundColor = .clear
         view.autocorrectionType = .no
         view.delegate = context.coordinator
@@ -71,6 +72,9 @@ struct ResizableTF : UIViewRepresentable {
         }
         
         func textViewDidChange(_ textView: UITextView) {
+            if textView.text.count > 5000 {
+                textView.text = String(textView.text.prefix(5000))
+            }
             DispatchQueue.main.async {
                 self.parent.height = textView.contentSize.height
                 self.parent.txt = textView.text

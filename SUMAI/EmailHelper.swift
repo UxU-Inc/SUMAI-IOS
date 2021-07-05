@@ -52,9 +52,6 @@ class EmailHelper: NSObject, MFMailComposeViewControllerDelegate {
     }
     
     static func getRootViewController() -> UIViewController? {
-        //        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController
-        
-        // OR If you use SwiftUI 2.0 based WindowGroup try this one
         UIApplication.shared.windows.first?.rootViewController
     }
 }

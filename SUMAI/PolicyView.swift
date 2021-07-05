@@ -24,7 +24,7 @@ struct PolicyView: View {
                     Image("SUMAILOGO_W")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 90, height: 33)
+                        .frame(width: 85, height: 30)
                 }
                 .accentColor(.primary)
                 Spacer()
@@ -34,7 +34,7 @@ struct PolicyView: View {
             HStack(spacing: 0){
                 Text("이용약관")
                     .foregroundColor(self.index == 0 ? .white : Color.black.opacity(0.7))
-                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
+                    .font(Font.custom("NotoSansKR-Medium", size: UIScreen.main.bounds.width > 350 ? 16 : 12))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 25)
@@ -48,7 +48,7 @@ struct PolicyView: View {
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 Text("개인정보처리방침")
                     .foregroundColor(self.index == 1 ? .white : Color.black.opacity(0.7))
-                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
+                    .font(Font.custom("NotoSansKR-Medium", size: UIScreen.main.bounds.width > 350 ? 16 : 12))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 10)
@@ -62,7 +62,7 @@ struct PolicyView: View {
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 Text("공지사항")
                     .foregroundColor(self.index == 2 ? .white : Color.black.opacity(0.7))
-                    .font(UIScreen.main.bounds.width > 350 ? nil : .system(size: 13))
+                    .font(Font.custom("NotoSansKR-Medium", size: UIScreen.main.bounds.width > 350 ? 16 : 12))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 25)
@@ -107,15 +107,16 @@ struct GridView : View {
                     VStack(alignment: .leading, spacing: 15){
                         HStack{
                             Text(data.title)
-                                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                .font(Font.custom("NotoSansKR-Medium", size: 26))
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .lineSpacing(5)
+                                .lineSpacing(3)
                                 .padding(.horizontal)
                                 .padding(.top)
                             Spacer()
                         }
                         Text(data.text)
-                            .lineSpacing(8)
+                            .font(Font.custom("NotoSansKR-Regular", size: 16))
+                            .lineSpacing(3)
                             .padding(.horizontal)
                     }
                 }
