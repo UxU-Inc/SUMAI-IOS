@@ -53,7 +53,6 @@ struct MainView: View {
                                 
                                 if !data.isEmpty{
                                     Button(action: {
-                                        print("clear button")
                                         self.data = ""
                                         self.summary = ""
                                     }, label: {
@@ -64,7 +63,6 @@ struct MainView: View {
                                 }
                                 
                                 Button(action: {
-                                    print("request")
                                     if !data.isEmpty && ischange {
                                         ischange = false
                                         
@@ -94,8 +92,6 @@ struct MainView: View {
                                     .background(Color.white)
                                     .id("summary")
                                     .onChange(of: sum_height) { _ in
-                                        print(UIScreen.main.bounds.height)
-                                        print(sum_height)
                                         withAnimation(.default) {
                                             if UIScreen.main.bounds.height - 222 < sum_height {
                                                 scroll.scrollTo("summary", anchor: .zero)
@@ -132,7 +128,6 @@ struct MainView: View {
                                 withAnimation(.default) {
                                     self.showmenu.toggle()
                                 }
-                                print("menu")
                             }, label: {
                                 Image(systemName: "line.horizontal.3")
                                     .font(.title2)
@@ -232,11 +227,19 @@ struct ProgressCircle : View { // Summary Progress popup
     var body: some View {
         if loading {
             GeometryReader{ geometry in
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .scaleEffect(3)
-                    .frame(width: 10, height: 10, alignment: .center)
-                    .offset(x: (geometry.size.width - 10) / 2, y: (geometry.size.height - 10) / 2)
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                        .scaleEffect(2)
+                    Text("요약 중...")
+                        .font(Font.custom("NotoSansKR-Regular", size: 14))
+                        .padding(.top, 20)
+                }
+                .padding([.top, .leading, .trailing], 20)
+                .padding(.bottom, 7)
+                .background(Color.white)
+                .cornerRadius(15)
+                .offset(x: (geometry.size.width - 92) / 2, y: (geometry.size.height - 110) / 2)
             }
             .background(Color.black.opacity(0.4)).edgesIgnoringSafeArea(.all)
         }

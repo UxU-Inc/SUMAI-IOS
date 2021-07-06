@@ -17,7 +17,6 @@ struct PolicyView: View {
             HStack(spacing: 15){
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
-                    print("back")
                 }){
                     Image(systemName: "chevron.backward")
                         .font(.title2)
