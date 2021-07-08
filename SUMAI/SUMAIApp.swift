@@ -19,6 +19,7 @@ struct SUMAIApp: App {
                     .navigationBarHidden(true)
                 PolicyView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             //.preferredColorScheme(.light) // darkmode ignore
         }
     }

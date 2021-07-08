@@ -94,7 +94,7 @@ struct MenuView: View {
         }
         .foregroundColor(.primary)
         .padding()
-        .frame(width: UIScreen.main.bounds.width / (UIScreen.main.bounds.width < 350 ? 1.4 : 1.5))
+        .frame(width: min(UIScreen.main.bounds.width / (UIScreen.main.bounds.width < 350 ? 1.4 : 1.5), 300))
         .background(Color.white).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth: 2).shadow(radius: 3).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
         .onTapGesture {

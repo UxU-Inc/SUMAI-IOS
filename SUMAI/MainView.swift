@@ -161,6 +161,7 @@ struct MainView: View {
                     }
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .accentColor(.primary)
             .onTapGesture {
                 UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
@@ -182,7 +183,7 @@ struct MainView: View {
             GeometryReader { geometry in
                 HStack{
                     MenuView(showmenu: self.$showmenu)
-                        .offset(x: self.showmenu ? 0 : -UIScreen.main.bounds.width / (UIScreen.main.bounds.width < 350 ? 1.4 : 1.5) - 10)
+                        .offset(x: self.showmenu ? 0 : -min(UIScreen.main.bounds.width / (UIScreen.main.bounds.width < 350 ? 1.4 : 1.5), 300) - 10)
                     
                     Spacer(minLength: 0)
                 }
