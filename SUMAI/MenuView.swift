@@ -64,29 +64,29 @@ struct MenuView: View {
                 .padding()
                 
                 Spacer()
-                HStack {
-                    Text("SUMAI의 다른 서비스")
-                        .font(Font.custom("NotoSansKR-Medium", size: 14))
-                        .opacity(0.85)
-                    Spacer()
-                }
-                .padding(5)
-                
-                Button(action: {
-                    if let url = URL(string: "https://news.sumai.co.kr") {
-                        UIApplication.shared.open(url, options: [:])
-                    }
-                }) {
-                    Image("LOGO")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                    Text("뉴스 요약")
-                        .font(Font.custom("NotoSansKR-Regular", size: 20))
-                        .opacity(0.85)
-                    Spacer()
-                }
-                .padding()
+//                HStack {
+//                    Text("SUMAI의 다른 서비스")
+//                        .font(Font.custom("NotoSansKR-Medium", size: 14))
+//                        .opacity(0.85)
+//                    Spacer()
+//                }
+//                .padding(5)
+//                
+//                Button(action: {
+//                    if let url = URL(string: "https://news.sumai.co.kr") {
+//                        UIApplication.shared.open(url, options: [:])
+//                    }
+//                }) {
+//                    Image("LOGO")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 24, height: 24)
+//                    Text("뉴스 요약")
+//                        .font(Font.custom("NotoSansKR-Regular", size: 20))
+//                        .opacity(0.85)
+//                    Spacer()
+//                }
+//                .padding()
             }
             .font(Font.custom("NotoSansKR-Regular", size: 17))
             .opacity(0.85)
