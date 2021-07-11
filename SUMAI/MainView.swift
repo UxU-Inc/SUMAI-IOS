@@ -101,7 +101,7 @@ struct MainView: View {
                                         }
                                     }
                             }
-                            if !iskeyboard { Spacer(minLength: 50) }
+                            if !iskeyboard { Spacer(minLength: max(50, GADBannerViewController.getAdBannerSize().size.height)) }
                         }
                     }
                     .shadow(radius: 3)
@@ -171,9 +171,14 @@ struct MainView: View {
             
             // Admob banner
             VStack{
+                let size = GADBannerViewController.getAdBannerSize()
                 Spacer()
-                GADBannerViewController()
-                    .frame(width: kGADAdSizeBanner.size.width, height: kGADAdSizeBanner.size.height)
+                HStack {
+                    Spacer()
+                    GADBannerViewController()
+                        .frame(width: size.size.width, height: size.size.height)
+                    Spacer()
+                }
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
 
