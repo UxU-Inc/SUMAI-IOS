@@ -25,7 +25,9 @@ struct MainView: View {
  
     var body: some View {
         ZStack(alignment: .leading) {
-            NavigationView{
+            VStack(spacing: 0) {
+                NavigationBar(showmenu: $showmenu)
+                    .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 GeometryReader { geometry in
                     ScrollView {
                         ScrollViewReader { scroll in
@@ -104,7 +106,7 @@ struct MainView: View {
                             if !iskeyboard { Spacer(minLength: max(50, GADBannerViewController.getAdBannerSize().size.height)) }
                         }
                     }
-                    .shadow(radius: 3)
+                    .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 3)
                     .onAppear {
                         showmenu = false
                         
@@ -121,47 +123,9 @@ struct MainView: View {
                         guard let cnt = UserDefaults.standard.value(forKey: "Count") else {return}
                         self.count = cnt as! Int
                     }
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar{
-                        ToolbarItem(placement: .navigationBarLeading){
-                            Button(action: {
-                                withAnimation(.default) {
-                                    self.showmenu.toggle()
-                                }
-                            }, label: {
-                                Image(systemName: "line.horizontal.3")
-                                    .font(.title2)
-                                Text("")
-                            })
-                            .padding(.vertical)
-                        }
-                        ToolbarItem(placement: .navigationBarLeading){
-                            HStack(spacing: 8){
-                                Image("SUMAILOGO")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 85, height: 30)
-                                Text("요약")
-                                    .font(Font.custom("NotoSansKR-Medium", size: 30))
-                                    .opacity(0.6)
-                                    .padding(.bottom, 4)
-                            }
-                        }
-//                        ToolbarItem(placement: .navigationBarTrailing){
-//                            Button(action: {print("login")}, label: {
-//                                Image(systemName: "person.circle.fill")
-//                                    .font(.title3)
-//                                Text("로그인")
-//                                    .font(Font.custom("NotoSansKR-Medium", size: 17))
-//                            })
-//                            .accentColor(.white)
-//                            .padding(5.0)
-//                            .background(RoundedRectangle(cornerRadius: 5).foregroundColor(.blue))
-//                        }
-                    }
                 }
             }
-            .navigationViewStyle(StackNavigationViewStyle())
+            .ignoresSafeArea(.all, edges: .top)
             .accentColor(.primary)
             .onTapGesture {
                 UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
